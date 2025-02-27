@@ -9,22 +9,43 @@
     <h1 id="title">Welcome to My Test Page</h1>
     <p id="description">This is a test page for GitHub Pages.</p>
 
-    <!-- Button to increase the tally -->
-    <button id="testButton">Click Me</button>
+    <!-- Button to reveal more digits of pi -->
+    <button id="testButton">Click for more pi</button>
 
-    <!-- Tally Display -->
-    <p>Click count: <span id="clickCount">0</span></p>
+    <!-- Display the revealed digits of pi -->
+    <p>π: <span id="piDisplay">3.</span></p>
 
     <!-- Link to navigate to test2.html -->
     <p><a href="test2.html">Go to Test Page 2</a></p>
 
     <script>
-        let count = 0; // Initialize tally counter
+        let piDigits = ""; // Store pi digits
+        let revealedDigits = 0; // Track how many digits are shown
 
-        function increaseTally() {
-            count++; // Increase the count
-            document.getElementById('clickCount').innerText = count; // Update display
+        async function loadPi() {
+            // Fetch the first 1 million digits of π from a precomputed file
+            const response = await fetch("https://www.piday.org/million.txt");
+            piDigits = await response.text();
+            piDigits = piDigits.replace(/\s/g, ""); // Remove spaces/newlines
         }
+
+        function revealMorePi() {
+            if (piDigits.length === 0) {
+                document.getElementById("piDisplay").innerText = "Loading π digits...";
+                return;
+            }
+
+            // Increase the revealed digits count
+            revealedDigits += 5; // Reveal 5 more digits per click
+            let displayText = "3." + piDigits.substring(0, revealedDigits);
+
+            // Update the display
+            document.getElementById("piDisplay").innerText = displayText;
+        }
+
+        // Load Pi digits when the page loads
+        loadPi();
+
 
         // Event Listener for Button Click
         document.getElementById('testButton').addEventListener('click', increaseTally);
