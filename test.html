@@ -9,7 +9,6 @@
     <h1 id="title">Welcome to My Test Page</h1>
     <p id="description">This is a test page for GitHub Pages.</p>
 
-    
     <!-- Button to reveal more digits of pi -->
     <button id="testButton">Click for more pi 🥧</button>
 
@@ -80,16 +79,14 @@
         function revealMorePi() {
             if (revealedDigits < piDigits.length) {
                 revealedDigits++; // Reveal one more digit
-                let displayText = "3." + piDigits.substring(0, revealedDigits);
-                document.getElementById("piDisplay").innerText = displayText;
+                document.getElementById("piDisplay").innerText = "3." + piDigits.substring(0, revealedDigits);
             } else {
                 alert("That's enough pi for you!");
             }
-        }v
-
+        }
 
         // Event Listener for Button Click
-        document.getElementById('testButton').addEventListener('click', increaseTally);
+        document.getElementById('testButton').addEventListener('click', revealMorePi);
     </script>
 
 </body>
