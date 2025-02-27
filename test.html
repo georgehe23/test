@@ -4,25 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Page</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jest/29.5.0/jest.min.js"></script>
-    <script src="test.js" defer></script>
 </head>
 <body>
     <h1 id="title">Welcome to My Test Page</h1>
     <p id="description">This is a test page for GitHub Pages.</p>
-    <button id="testButton">Click Me</button>
     
+    <!-- Button to increase the tally -->
+    <button id="testButton">Click Me</button>
+
+    <!-- Tally Display -->
+    <p>Click count: <span id="clickCount">0</span></p>
+
     <script>
-        // Simple JavaScript function to test
-        function changeText() {
-            document.getElementById('title').innerText = "Text Changed!";
+        let count = 0; // Initialize tally counter
+
+        function increaseTally() {
+            count++; // Increase the count
+            document.getElementById('clickCount').innerText = count; // Update display
         }
 
         // Event Listener for Button Click
-        document.getElementById('testButton').addEventListener('click', changeText);
+        document.getElementById('testButton').addEventListener('click', increaseTally);
     </script>
 
-    <h2>Test Results:</h2>
-    <pre id="test-results"></pre>
 </body>
 </html>
